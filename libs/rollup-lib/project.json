@@ -1,0 +1,53 @@
+{
+  "name": "@adaskothebeast/rollup-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/rollup-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project @adaskothebeast/rollup-lib --web",
+  "targets": {
+    "build": {
+      "options": {
+        "cwd": "libs/rollup-lib",
+        "commands": [
+          "rollup -c rollup.config.cjs",
+          "node ../../tools/emit-package-json.mjs ."
+        ]
+      },
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": ["rollup"]
+        }
+      ],
+      "outputs": ["{workspaceRoot}/dist/libs/{projectRoot}"],
+      "metadata": {
+        "technologies": ["typescript", "rollup"],
+        "description": "Run Rollup",
+        "help": {
+          "command": "yarn rollup --help",
+          "example": {
+            "options": {
+              "sourcemap": true,
+              "watch": true
+            }
+          }
+        }
+      },
+      "syncGenerators": ["@nx/js:typescript-sync"],
+      "executor": "nx:run-commands",
+      "configurations": {},
+      "parallelism": true
+    },
+    "emit-package-json": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/emit-package-json.mjs libs/rollup-lib"
+      },
+      "outputs": ["{workspaceRoot}/libs/rollup-lib/dist/package.json"]
+    }
+  }
+}

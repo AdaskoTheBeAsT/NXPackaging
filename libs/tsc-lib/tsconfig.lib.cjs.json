@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "dist/cjs",
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "importHelpers": true,
+    "declaration": false,
+    "emitDeclarationOnly": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+}

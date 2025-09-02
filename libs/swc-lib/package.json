@@ -1,0 +1,28 @@
+{
+  "name": "@adaskothebeast/swc-lib",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "dependencies": {
+    "@swc/helpers": "~0.5.17"
+  },
+  "peerDependencies": {
+    "uuid": "^11.1.0"
+  }
+}

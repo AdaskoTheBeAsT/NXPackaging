@@ -1,0 +1,54 @@
+{
+  "name": "@adaskothebeast/swc-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/swc-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build-esm": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/swc-lib/dist/esm",
+        "main": "libs/swc-lib/src/index.ts",
+        "tsConfig": "libs/swc-lib/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true,
+        "swcrc": "libs/swc-lib/.swcrc.esm.json"
+      }
+    },
+    "build-cjs": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/swc-lib/dist/cjs",
+        "main": "libs/swc-lib/src/index.ts",
+        "tsConfig": "libs/swc-lib/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true,
+        "swcrc": "libs/swc-lib/.swcrc.cjs.json"
+      }
+    },
+    "types": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/libs/swc-lib/dist"],
+      "options": {
+        "cwd": "libs/swc-lib",
+        "command": "tsc -p tsconfig.lib.json"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          "nx run swc-lib:types",
+          "nx run swc-lib:build-esm",
+          "nx run swc-lib:build-cjs",
+          "node tools/rename-to-cjs.mjs libs/swc-lib/dist/cjs",
+          "node tools/emit-package-json.mjs libs/swc-lib"
+        ]
+      }
+    }
+  }
+}

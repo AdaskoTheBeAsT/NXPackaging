@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/tsc-lib"
+    },
+    {
+      "path": "./libs/swc-lib"
+    },
+    {
+      "path": "./libs/rollup-lib"
+    },
+    {
+      "path": "./libs/vite-lib"
+    },
+    {
+      "path": "./libs/esbuild-lib"
+    }
+  ]
+}

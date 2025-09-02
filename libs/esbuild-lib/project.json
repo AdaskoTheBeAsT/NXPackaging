@@ -1,0 +1,31 @@
+{
+  "name": "@adaskothebeast/esbuild-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/esbuild-lib/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "bundle": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/esbuild-lib/dist",
+        "main": "libs/esbuild-lib/src/index.ts",
+        "tsConfig": "libs/esbuild-lib/tsconfig.lib.json",
+        "format": ["esm", "cjs"],
+        "declarationRootDir": "libs/esbuild-lib/src"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          "nx run esbuild-lib:bundle",
+          "node tools/emit-package-json.mjs libs/esbuild-lib"
+        ]
+      },
+      "outputs": ["{workspaceRoot}/libs/esbuild-lib/dist"]
+    }
+  }
+}
