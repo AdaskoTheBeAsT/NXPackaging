@@ -12,11 +12,12 @@ swcJestConfig.swcrc = false;
 const reportName = 'esbuild-lib';
 const reportPath = `../../.reports/libs/${reportName}/`;
 
-
 export default {
   displayName: '@adaskothebeast/esbuild-lib',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
+  // Transform ESM-only deps from node_modules (like 'uuid') to CJS for Jest
+  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },

@@ -8,7 +8,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
+      "@adaskothebeast/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs.js",
@@ -20,6 +20,6 @@
     "!**/*.tsbuildinfo"
   ],
   "peerDependencies": {
-    "uuid": "^11.1.0"
+    "uuid": "^13.0.0"
   }
 }

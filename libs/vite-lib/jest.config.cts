@@ -19,6 +19,8 @@ export default {
   transform: {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
+  // Transform ESM-only deps from node_modules (like 'uuid') to CJS for Jest
+  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
   moduleFileExtensions: ['ts', 'js', 'html'],
   collectCoverage: true,
   coverageDirectory: `${reportPath}coverage`,
